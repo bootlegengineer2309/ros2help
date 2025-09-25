@@ -14,7 +14,7 @@ class MyCustomNode(Node):  # MODIFY NAME
     def publish_news(self):
         msg = String()
         msg.data = "Hello"
-        self.publisher_.publish(msg) 
+        self.publisher_.publish(msg)
 
 
 def main(args=None):
