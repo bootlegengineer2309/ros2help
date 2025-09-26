@@ -14,6 +14,7 @@ public:
     }
 
 private:
+
     void publishNews()
     {
         auto msg = example_interfaces::msg::String();

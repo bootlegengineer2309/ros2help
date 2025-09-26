@@ -17,7 +17,7 @@ public:
 private:
 
     rclcpp::Subscription<example_interfaces::msg::String>::SharedPtr subscriber_;
-    void callbackRobotNews(const example_interfaces::msg::String::SharedPtr msg)
+    void callbackRobotNews(const example_interfaces::msg::String::SharedPtr msg) 
     {
         RCLCPP_INFO(this->get_logger(), "%s", msg->data.c_str());
     }
