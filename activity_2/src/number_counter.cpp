@@ -4,10 +4,10 @@
 using namespace std::chrono_literals;
 using namespace std::placeholders;
 
-class NumberCounterNode : public rclcpp::Node // MODIFY NAME
+class NumberCounterNode : public rclcpp::Node
 {
 public:
-    NumberCounterNode() : Node("number_publisher"), count(0)
+    NumberCounterNode() : Node("number_counter"), count(0)
     {
         numberSubscriber_ = create_subscription<example_interfaces::msg::Int64>(
             "number", 10,
@@ -19,19 +19,12 @@ public:
 
 private:
 
-    void publishCount()
-    {
-        auto msg = example_interfaces::msg::Int64();
-        msg.data = count;
-        numberPublisher_->publish(msg);
-    }
-
     void callbackCount(const example_interfaces::msg::Int64::SharedPtr msg)
     {
-        auto newNum = msg->data;
-        count = count + newNum;
-        
-        publishCount();
+        count += msg->data;
+        auto published_msg = example_interfaces::msg::Int64();
+        published_msg.data = count;
+        numberPublisher_->publish(published_msg);
     }
 
     rclcpp::Publisher<example_interfaces::msg::Int64>::SharedPtr numberPublisher_;
